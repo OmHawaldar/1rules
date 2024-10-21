@@ -4,13 +4,13 @@ import cors from 'cors';
 import { createRule, combineRules, evaluateRule } from './src/utils/ruleEngine.js';
 
 const app = express();
-const port = process.env.PORT || 3000; // Use environment variable for the port
+const port = process.env.PORT || 3000;
 
 app.use(cors());
 app.use(express.json());
 
-// Connect to MongoDB Atlas
-const uri = process.env.MONGO_URI; // Use environment variable for MongoDB connection string
+// MongoDB Connection
+const uri = "mongodb+srv://user39:123456om@cluster0.kf2uz.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"; // Replace <db_password> with your password
 mongoose.connect(uri, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
@@ -24,6 +24,11 @@ const ruleSchema = new mongoose.Schema({
 });
 
 const Rule = mongoose.model('Rule', ruleSchema);
+
+// Root Route
+app.get('/', (req, res) => {
+  res.send('Welcome to the Rule Engine API');
+});
 
 // API Routes
 app.post('/api/rules', async (req, res) => {
@@ -50,9 +55,10 @@ app.post('/api/evaluate', async (req, res) => {
 app.delete('/api/rules/:id', async (req, res) => {
   const { id } = req.params;
   await Rule.findByIdAndDelete(id);
-  res.status(204).send(); // No content
+  res.status(204).send();
 });
 
+// Start the server
 app.listen(port, () => {
   console.log(`Server running at http://localhost:${port}`);
 });
