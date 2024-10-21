@@ -22,7 +22,7 @@ function App() {
 
   const fetchRules = async () => {
     try {
-      const response = await fetch('http://localhost:3000/api/rules');
+      const response = await fetch('https://rule-engine-o3rl.onrender.com');
       if (!response.ok) {
         throw new Error('Failed to fetch rules');
       }
@@ -37,7 +37,7 @@ function App() {
     if (!isAdmin || !newRule) return;
 
     try {
-      const response = await fetch('http://localhost:3000/api/rules', {
+      const response = await fetch('https://rule-engine-o3rl.onrender.com', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ ruleString: newRule }),
@@ -56,7 +56,7 @@ function App() {
     if (!isAdmin) return;
 
     try {
-      const response = await fetch(`http://localhost:3000/api/rules/${id}`, {
+      const response = await fetch(`https://rule-engine-o3rl.onrender.com/api/rules/${id}`, {
         method: 'DELETE',
       });
       if (!response.ok) {
@@ -71,7 +71,7 @@ function App() {
   const handleEvaluate = async () => {
     if (rules.length > 0) {
       try {
-        const response = await fetch('http://localhost:3000/api/evaluate', {
+        const response = await fetch('https://rule-engine-o3rl.onrender.com/api/evaluate', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ userData }),
