@@ -11,7 +11,7 @@ app.use(cors({
 }));app.use(express.json());
 
 // MongoDB Connection
-const uri = "mongodb+srv://user39:123456om@cluster0.kf2uz.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"; // Replace <db_password> with your password
+const uri = "mongodb+srv://<dbuser>:<dbpassword>@cluster0.kf2uz.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"; // Replace <dbuser> with your userid <db_password> with your password
 mongoose.connect(uri, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
