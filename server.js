@@ -56,7 +56,7 @@ app.delete('/api/rules/:id', async (req, res) => {
   res.status(204).send(); // No content
 });
 
-const { MongoClient, ServerApiVersion } = require('mongodb');
+import { MongoClient, ServerApiVersion } from 'mongodb';
 const uri = "mongodb+srv://hawaldarom39:<Karbhargalli@39>@cluster0.kf2uz.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
 
 // Create a MongoClient with a MongoClientOptions object to set the Stable API version
