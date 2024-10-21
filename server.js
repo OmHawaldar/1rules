@@ -49,3 +49,9 @@ app.post('/api/evaluate', async (req, res) => {
 app.listen(port, () => {
   console.log(`Server running at http://localhost:${port}`);
 });
+
+app.delete('/api/rules/:id', async (req, res) => {
+  const { id } = req.params;
+  await Rule.findByIdAndDelete(id);
+  res.status(204).send(); // No content
+});
