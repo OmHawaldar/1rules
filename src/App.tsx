@@ -22,7 +22,7 @@ function App() {
 
   const fetchRules = async () => {
     try {
-      const response = await fetch('https://rule-engine-o3rl.onrender.com');
+      const response = await fetch('https://rule-engine-o3rl.onrender.com/api/rules'); // Correct URL
       if (!response.ok) {
         throw new Error('Failed to fetch rules');
       }
@@ -35,9 +35,9 @@ function App() {
 
   const handleAddRule = async () => {
     if (!isAdmin || !newRule) return;
-
+  
     try {
-      const response = await fetch('https://rule-engine-o3rl.onrender.com', {
+      const response = await fetch('https://rule-engine-o3rl.onrender.com/api/rules', { // Correct URL
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ ruleString: newRule }),
@@ -52,40 +52,41 @@ function App() {
     }
   };
 
-  const handleDeleteRule = async (id: string) => {
-    if (!isAdmin) return;
+  
+const handleDeleteRule = async (id: string) => {
+  if (!isAdmin) return;
 
+  try {
+    const response = await fetch(`https://rule-engine-o3rl.onrender.com/api/rules/${id}`, { // Correct URL
+      method: 'DELETE',
+    });
+    if (!response.ok) {
+      throw new Error('Failed to delete rule');
+    }
+    fetchRules(); // Refresh the rules list
+  } catch (err) {
+    setError('Failed to delete rule. Make sure the backend server is running.');
+  }
+};
+
+const handleEvaluate = async () => {
+  if (rules.length > 0) {
     try {
-      const response = await fetch(`https://rule-engine-o3rl.onrender.com/api/rules/${id}`, {
-        method: 'DELETE',
+      const response = await fetch('https://rule-engine-o3rl.onrender.com/api/evaluate', { // Correct URL
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ userData }),
       });
       if (!response.ok) {
-        throw new Error('Failed to delete rule');
+        throw new Error('Failed to evaluate rules');
       }
-      fetchRules(); // Refresh the rules list
+      const data = await response.json();
+      setResult(data.result);
     } catch (err) {
-      setError('Failed to delete rule. Make sure the backend server is running.');
+      setError('Failed to evaluate rules. Make sure the backend server is running.');
     }
-  };
-
-  const handleEvaluate = async () => {
-    if (rules.length > 0) {
-      try {
-        const response = await fetch('https://rule-engine-o3rl.onrender.com/api/evaluate', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ userData }),
-        });
-        if (!response.ok) {
-          throw new Error('Failed to evaluate rules');
-        }
-        const data = await response.json();
-        setResult(data.result);
-      } catch (err) {
-        setError('Failed to evaluate rules. Make sure the backend server is running.');
-      }
-    }
-  };
+  }
+};
 
   const handleLogin = () => {
     // Replace 'adminPassword' with your secure password

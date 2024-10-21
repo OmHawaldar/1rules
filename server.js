@@ -6,8 +6,9 @@ import { createRule, combineRules, evaluateRule } from './src/utils/ruleEngine.j
 const app = express();
 const port = process.env.PORT || 3000;
 
-app.use(cors());
-app.use(express.json());
+app.use(cors({
+  origin: 'https://6716bd1a2969910008be3d70--om-rule-engine.netlify.app/', // Replace with your Netlify URL
+}));app.use(express.json());
 
 // MongoDB Connection
 const uri = "mongodb+srv://user39:123456om@cluster0.kf2uz.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"; // Replace <db_password> with your password
