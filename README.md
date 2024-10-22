@@ -2,6 +2,9 @@
 
 This project implements a simple 3-tier rule engine application designed to dynamically create, combine, and evaluate user eligibility rules based on attributes such as age, department, salary, and experience. The system utilizes an Abstract Syntax Tree (AST) to represent conditional rules, allowing flexible management of these rules through a structured data model.
 
+
+Take a look at play with the live running application deployed using Netlify https://om-rule-engine.netlify.app/ use password as "adminPassword", refresh and try again if the "backend not connected" error occurs
+
 ## Data Structure for Rule Representation
 
 The rules are represented using an Abstract Syntax Tree (AST). The AST is defined with the following structure:
