@@ -130,8 +130,6 @@ Use the admin password to log in and manage rules.
 - **DELETE /api/rules/:id**: Delete a rule by ID.
 - **POST /api/evaluate**: Evaluate user data against the rules.
 
-## License
-This project is licensed under the [MIT License](LICENSE). See the LICENSE file for details.
 
 ## Contributing
 Contributions are welcome! Please feel free to submit a pull request.
