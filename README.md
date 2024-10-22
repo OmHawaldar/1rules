@@ -1,3 +1,11 @@
+
+
+
+
+https://github.com/user-attachments/assets/8da4d2ae-a2b1-4253-8fe8-02b9b5856d5e
+
+
+
 # Rule Engine Application
 
 This project implements a simple 3-tier rule engine application designed to dynamically create, combine, and evaluate user eligibility rules based on attributes such as age, department, salary, and experience. The system utilizes an Abstract Syntax Tree (AST) to represent conditional rules, allowing flexible management of these rules through a structured data model.
